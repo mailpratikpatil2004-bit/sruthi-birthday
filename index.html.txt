@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise 🎉</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+  background-size: 800% 800%;
+  animation: bg 12s ease infinite;
+  font-family: 'Comic Sans MS', cursive;
+  overflow: hidden;
+}
+
+/* Background animation */
+@keyframes bg {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* Slides container */
+.slider {
+  position: absolute;
+  inset: 0;
+}
+
+/* Slide */
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: all 0.8s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Slide content */
+.content {
+  background: rgba(255,255,255,0.85);
+  border-radius: 30px;
+  padding: 40px;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+h1 {
+  color: #ff3f8b;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 20px;
+  color: #555;
+}
+
+/* Button */
+button {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff3f8b;
+  color: white;
+  border: none;
+  padding: 14px 35px;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+button:hover {
+  background: #ff69b4;
+}
+
+/* Balloons */
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  font-size: 35px;
+  animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {transform: translateY(0);}
+  100% {transform: translateY(-120vh);}
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  color: #ff69b4;
+  font-size: 22px;
+  animation: floatHeart 5s linear infinite;
+}
+
+@keyframes floatHeart {
+  0% {transform: translateY(0); opacity: 1;}
+  100% {transform: translateY(-100vh); opacity: 0;}
+}
+
+/* Final slide special */
+.final h1 {
+  font-size: 40px;
+}
+
+.final p {
+  font-size: 22px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="slider">
+
+  <div class="slide active">
+    <div class="content">
+      <h1>Hey You 💖</h1>
+      <p>I made something special just for you 🌸</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="content">
+      <h1>✨ A Little Story ✨</h1>
+      <p>You make everything brighter just by being around 🌈</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="content">
+      <h1>💝 You Matter 💝</h1>
+      <p>Your smile can make any day better 😊</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="content">
+      <h1>🌟 Just Saying 🌟</h1>
+      <p>I’m really lucky to have you in my life 💕</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="content">
+      <h1>🎈 For Today 🎈</h1>
+      <p>May your day be filled with love, cake, and laughter 🍰</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="content">
+      <h1>💫 One More Thing 💫</h1>
+      <p>You deserve all the happiness in the world 🌍</p>
+    </div>
+  </div>
+
+  <div class="slide final">
+    <div class="content">
+      <h1>🎂 HAPPY BIRTHDAY,SRUTHI 🎉</h1>
+ <p>
+Sruthi,<br><br>
+
+I hope your day is filled with happiness and everything you love.<br>
+You truly make things brighter just by being yourself.<br>
+I'm really glad I get to celebrate you today ✨🌸<br><br>
+
+ 💖🥳</p>
+    </div>
+  </div>
+
+</div>
+
+<button onclick="nextSlide()">Next 🎁</button>
+
+<script>
+let current = 0;
+let slides = document.querySelectorAll(".slide");
+
+function nextSlide() {
+  slides[current].classList.remove("active");
+  current++;
+
+  if (current >= slides.length) {
+    current = slides.length - 1;
+    return;
+  }
+
+  slides[current].classList.add("active");
+  balloons();
+  hearts();
+}
+
+/* Balloons */
+function balloons() {
+  for (let i = 0; i < 5; i++) {
+    let b = document.createElement("div");
+    b.className = "balloon";
+    b.innerHTML = "🎈";
+    b.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 8000);
+  }
+}
+
+/* Hearts */
+function hearts() {
+  for (let i = 0; i < 6; i++) {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+  }
+}
+</script>
+
+</body>
+</html>
